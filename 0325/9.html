@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let ary = [12, 23, 12, 13, 13, 12, 23, 14, 8];
+        Array.prototype.unique = function unique() {
+            let obj = {};
+            for (let i = 0; i < this.length; i++) {
+                if (obj[this[i]] !== undefined) {
+                    this[i] = this[this.length - 1];
+                    this.length--;
+                    i--;
+                    continue;
+                }
+                obj[this[i]] = this[i];
+            }
+            obj = null;
+            return this;
+        }
+        ary.unique().sort((a, b) => a - b);
+        console.log(ary);
+    </script>
+</body>
+
+</html>

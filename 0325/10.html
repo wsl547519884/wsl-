@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let url = "locallhost?key1=val1&key2=val2&key3=val3";
+        String.prototype.getParam = function getParam(x) {
+            let askIndex = this.indexOf('?'),
+                askText = '';
+            askIndex > -1 ? askText = url.slice(askIndex + 1) : null;
+            let obj = {};
+            if (askText) {
+                let arr1 = askText.split('&');
+                arr1.forEach(item => {
+                    let arr2 = item.split('=');
+                    obj[arr2[0]] = arr2[1];
+                })
+            }
+            return obj[x];
+        }
+        console.log(url.getParam("key3"));
+    </script>
+</body>
+
+</html>
