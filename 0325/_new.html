@@ -20,11 +20,12 @@
         }
 
         function _new(x, name) {
-            let obj = {
-                __proto__: x.prototype
-            }; 
+            // let obj = {
+            //     __proto__: x.prototype
+            // }; 
+            let obj = Object.create(x.prototype);
             x.call(obj,name);
-            x();
+            // x();
             return obj;
         }
         let sanmao = _new(Dog, '三毛');

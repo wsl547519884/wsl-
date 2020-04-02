@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body,
+		ul,
+		li {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="price.css" />
+</head>
+
+<body>
+	<div class="wrap">
+		<div class="box">
+			<ul class="list">
+				<li>
+					<i class="reduce"></i>
+					<em>0</em>
+					<i class="add"></i>
+					<span>
+						单价：<strong class="unit-price">12.5元 </strong> 小计：<strong class="subtotal">0元</strong>
+					</span>
+				</li>
+				<li>
+					<i class="reduce"></i>
+					<em>0</em>
+					<i class="add"></i>
+					<span>
+						单价：<strong class="unit-price">10.5元 </strong> 小计：<strong class="subtotal">0元</strong>
+					</span>
+				</li>
+				<li>
+					<i class="reduce"></i>
+					<em>0</em>
+					<i class="add"></i>
+					<span>
+						单价：<strong class="unit-price">8.5元 </strong> 小计：<strong class="subtotal">0元</strong>
+					</span>
+				</li>
+				<li>
+					<i class="reduce"></i>
+					<em>0</em>
+					<i class="add"></i>
+					<span>
+						单价：<strong class="unit-price">8元 </strong> 小计：<strong class="subtotal">0元</strong>
+					</span>
+				</li>
+				<li>
+					<i class="reduce"></i>
+					<em>0</em>
+					<i class="add"></i>
+					<span>
+						单价：<strong class="unit-price">14.5元 </strong> 小计：<strong class="subtotal">0元</strong>
+					</span>
+				</li>
+			</ul>
+			<div class="info">
+				<span>商品公合计：<em>0</em>件</span>
+				<span>共花费了：<em>0</em>元</span>
+				<br />
+				<br />
+				<span>其中最贵的商品单价是：<em>0</em>元</span>
+			</div>
+		</div>
+	</div>
+	<script>
+		let priceModule = (function () {
+			let reduceI = document.querySelectorAll('.list li .reduce'),
+				addI = document.querySelectorAll('.list li .add'),
+				num = document.querySelectorAll('.list li em'),
+				unitPrice = document.querySelectorAll('.list li .unit-price'),
+				subtotal = document.querySelectorAll('.list li .subtotal'),
+				infoTotal = document.querySelector('.info span:nth-of-type(1) em'),
+				infoSpend = document.querySelector('.info span:nth-of-type(2) em'),
+				infoMax = document.querySelector('.info span:nth-of-type(3) em');
+			// 计算小计每项的和
+			let Spend = function Spend() {
+				let total = 0;
+				[].forEach.call(subtotal, item => {
+					total += parseFloat(item.innerHTML);
+				})
+				return total;
+			}
+			// 计算num每一项的和
+			let sum = function sum() {
+				let total = 0;
+				[].forEach.call(num, item => {
+					total += parseFloat(item.innerHTML);
+				})
+				return total;
+			};
+			// 点击加减号加减数量
+			let arr = [];
+			let reduce = function () {
+				[].forEach.call(reduceI, (item, index) => {
+					// 每一个数量的值，添加到自定义属性中
+					item.I = parseFloat(num[index].innerHTML);
+					// 每一个单价的值，添加到自定义属性中
+					item.sub = parseFloat(unitPrice[index].innerHTML);
+					item.onclick = function () {
+						// this为item => reduceI[index]
+						this.I--;
+						this.I < 0 ? this.I = 0 : null;
+						num[index].innerHTML = this.I; //绑定到页面
+						// 把sum的返回值绑定到页面上
+						infoTotal.innerHTML = sum();
+						subtotal[index].innerHTML = `${this.I * this.sub}元`;
+						infoSpend.innerHTML = Spend();
+						// 删除时，找到当前项的单价最后一次出现的索引，然后删除，判断点击这项是否存在
+						arr.lastIndexOf(this.sub) >= 0 ? arr.splice(arr.lastIndexOf(this.sub), 1) :
+							null;
+						// 判断当一项也没有时，默认值为0
+						arr.length <= 0 ? arr = [0] : null;
+						infoMax.innerHTML = Math.max(...arr); // 获取单价中的最大值
+					}
+				});
+
+			}
+			let add = function () {
+				[].forEach.call(addI, (item, index) => {
+					item.onclick = function () {
+						// 直接调用每个reduceI的自定义属性值
+						reduceI[index].I++;
+						num[index].innerHTML = reduceI[index].I; //绑定到页面
+						// 把sum的返回值绑定到页面上
+						infoTotal.innerHTML = sum();
+						subtotal[index].innerHTML = `${reduceI[index].I * reduceI[index].sub}元`;
+						infoSpend.innerHTML = Spend();
+						// 添加当前项的单价到数组中，判断当默认项0存在时把默认项0删除
+						arr.includes(0) ? arr.splice(arr.lastIndexOf(0), 1) : null;
+						arr.push(reduceI[index].sub);
+						infoMax.innerHTML = Math.max(...arr); // 获取单价中的最大值
+					}
+				})
+			}
+			return {
+				init() {
+					reduce();
+					add();
+				}
+			}
+		})();
+		priceModule.init();
+	</script>
+</body>
+
+</html>

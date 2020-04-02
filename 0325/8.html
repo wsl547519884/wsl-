@@ -11,12 +11,10 @@
     <script>
         let n = 10;
         Number.prototype.plus = function plus(x) {
-            n += x;
-            return n;
+            return this + x;
         }
         Number.prototype.minus = function minus(y) {
-            n -= y;
-            return n;
+            return this - y;
         }
         let m = n.plus(10).minus(5);
         console.log(m);
