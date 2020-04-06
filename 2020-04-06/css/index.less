@@ -1,0 +1,101 @@
+body,
+html {
+    background-color: #ccc;
+}
+
+.Box {
+    width: 1200px;
+    margin: 0 auto;
+
+    .navBox {
+        height: 50px;
+        line-height: 50px;
+        background-color: #fff;
+
+        h3 {
+            float: left;
+            font-size: 20px;
+            margin: 0 20px;
+        }
+
+        ul {
+            float: left;
+
+            li {
+                float: left;
+                font-size: 16px;
+                color: #111;
+                margin-left: 25px;
+                cursor: pointer;
+            }
+
+            li:hover {
+                color: red;
+            }
+        }
+    }
+
+    .mainBox {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 15px;
+
+        li {
+            width: 19.2%;
+            margin-right: 1%;
+            background-color: #fff;
+            margin-top: 12px;
+            transition: all .5s;
+
+            .mainImg {
+                width: 100%;
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            .mainText {
+                padding: 15px 20px;
+                h3 {
+                    font-size: 16px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+                p {
+                    margin-top: 8px;
+                }
+                p:nth-of-type(1) {
+                    span:nth-of-type(1) {
+                        font-size: 18px;
+                        color: red;
+                    }
+                    span:nth-of-type(2) {
+                        padding: 0px 4px;
+                        border: 1px solid blue;
+                        color: blue;
+                        border-radius: 10px;
+                    } 
+                }
+                p:nth-of-type(2) {
+                    span {
+                        padding: 0 2px;
+                        border: 1px solid red;
+                        color: red;
+                    }
+                }
+                p:nth-of-type(4) {
+                    color: #ccc;
+                } 
+            }
+        }
+
+        li:nth-of-type(5n) {
+            margin-right: 0;
+        }
+        li:hover {
+            transform: translateY(-8px);
+        }
+    }
+}

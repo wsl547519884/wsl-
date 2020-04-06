@@ -1,0 +1,85 @@
+body,
+html {
+  background-color: #ccc;
+}
+.Box {
+  width: 1200px;
+  margin: 0 auto;
+}
+.Box .navBox {
+  height: 50px;
+  line-height: 50px;
+  background-color: #fff;
+}
+.Box .navBox h3 {
+  float: left;
+  font-size: 20px;
+  margin: 0 20px;
+}
+.Box .navBox ul {
+  float: left;
+}
+.Box .navBox ul li {
+  float: left;
+  font-size: 16px;
+  color: #111;
+  margin-left: 25px;
+  cursor: pointer;
+}
+.Box .navBox ul li:hover {
+  color: red;
+}
+.Box .mainBox {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+.Box .mainBox li {
+  width: 19.2%;
+  margin-right: 1%;
+  background-color: #fff;
+  margin-top: 12px;
+  transition: all 0.5s;
+}
+.Box .mainBox li .mainImg {
+  width: 100%;
+}
+.Box .mainBox li .mainImg img {
+  width: 100%;
+}
+.Box .mainBox li .mainText {
+  padding: 15px 20px;
+}
+.Box .mainBox li .mainText h3 {
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.Box .mainBox li .mainText p {
+  margin-top: 8px;
+}
+.Box .mainBox li .mainText p:nth-of-type(1) span:nth-of-type(1) {
+  font-size: 18px;
+  color: red;
+}
+.Box .mainBox li .mainText p:nth-of-type(1) span:nth-of-type(2) {
+  padding: 0px 4px;
+  border: 1px solid blue;
+  color: blue;
+  border-radius: 10px;
+}
+.Box .mainBox li .mainText p:nth-of-type(2) span {
+  padding: 0 2px;
+  border: 1px solid red;
+  color: red;
+}
+.Box .mainBox li .mainText p:nth-of-type(4) {
+  color: #ccc;
+}
+.Box .mainBox li:nth-of-type(5n) {
+  margin-right: 0;
+}
+.Box .mainBox li:hover {
+  transform: translateY(-8px);
+}
