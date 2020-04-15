@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <script src="手机号.js"></script> -->
+    <script>
+        var str = 'zf2019px2020';
+        var reg = /\d+/;
+        RegExp.prototype.execAll = function (str) {
+            let arr = [],
+                res = this.exec(str),
+                a = null;
+            if (!this.global) {
+                a = eval(this + 'g');
+            };
+            // res = this.exec(str);
+            res = a.exec(str);
+            while (res) {
+                arr.push(res[0]);
+                res = a.exec(str);
+            }
+
+            return arr;
+        }
+        console.log(reg.execAll(str));
+    </script>
+</body>
+
+</html>
