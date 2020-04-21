@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 800px;
+            margin: 80px auto;
+        }
+
+        .box img {
+            width: 100%;
+            opacity: 0;
+        }
+
+        .box1 {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <img src="1.jpg" alt="">
+    </div>
+    <!-- <div class="box1"></div> -->
+    <script>
+        let box = document.querySelector('.box'),
+            img = box.querySelector('img');
+        let box1 = document.querySelector('.box1');
+        let fadeIn = function fadeIn(element) {
+            let temp = 1 / (1000 / 20),
+                opacity = 0;
+            let timer = setInterval(() => {
+                opacity += temp;
+                if (opacity >= 1) {
+                    opacity = 1;
+                    clearInterval(timer);
+                };
+                element.style.opacity = opacity;
+            }, 20);
+        };
+        fadeIn(img);
+        // fadeIn(box1);
+    </script>
+</body>
+
+</html>

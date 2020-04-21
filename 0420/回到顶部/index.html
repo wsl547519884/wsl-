@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 5000px;
+            background-image: linear-gradient(red, yellow, blue);
+        }
+
+        .btn {
+            position: fixed;
+            right: 0px;
+            bottom: 200px;
+            width: 60px;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="btn">回到顶部</button>
+    <script>
+        let body = document.body,
+            btn = document.querySelector('.btn'),
+            HTML = document.documentElement;
+            btn.onclick = function () {
+                let h2 = HTML.scrollTop,
+                    temp = h2 / (1000 / 20);
+                let timer = setInterval(() => {
+                    h2 -= temp;
+                    if (h2 <= 0) {
+                        h2 = 0;
+                        clearInterval(timer);
+                    }
+                    HTML.scrollTop = h2;
+                }, 20);
+            }
+    </script>
+</body>
+
+</html>
